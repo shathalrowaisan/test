@@ -125,7 +125,9 @@ mixin Warehouse {
       if (quantity!) {
 
         // print ID ( stdout.write() )
-        stdout.write("${book.getID()} . ");
+        stdout.write("ID ${book.getID()} . ");
+        book.viewInfo();
+        stdout.write("ID ${book.getQuantity()} . ");
         book.viewInfo();
         // print quantity
         
@@ -402,8 +404,12 @@ class Book extends Library {
 
   viewInfo(){ 
     // khuloud
-    print("the name of the book: ${book_title},the uathor:${author},the price: ${price} ");
-
+    print("the titel book is : ${book_title}");
+    print("    the name uathor:  ${author}");
+     print("    the price:    ${price} ");
+     print("    the amount of books available: ${quantity}");
+     print(".............................................................");
+  
   }
 
 
