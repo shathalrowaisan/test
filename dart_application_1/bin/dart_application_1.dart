@@ -1,5 +1,6 @@
 
 // import 'dart:html';
+import 'dart:collection';
 import 'dart:io';
 import 'dart:mirrors';
 
@@ -27,7 +28,7 @@ void main(List<String> arguments) {
     print("4 . View the Books information");
     print("5 . Search for a Book");
     print("6 . Exit the program ");
-    stdout.write("Please enter a number from the above options : ");
+    stdout.write("Please enter a number from the about options : ");
 
     var input = stdin.readLineSync();
 
@@ -116,6 +117,8 @@ mixin Warehouse {
   static viewInfo({required bool? quantity}) {
     // khuloud
     // this method should print all the books and all there info
+   //print("the name of the book: ${book_title},the uathor:${author},the price: ${price} ");
+
 
     for (var book in books) {
       
@@ -257,6 +260,7 @@ class Book extends Library {
     print("the Book with ID ( $book_id ) generated succesfully");
 
   }
+  
 
   // SETTERS AND GETTERS
   getQuantity(){ return quantity ;}
@@ -281,7 +285,6 @@ class Book extends Library {
     print("the name of the book: ${book_title},the uathor:${author},the price: ${price} ");
 
   }
-
 
   edit(){ 
     // amjad
