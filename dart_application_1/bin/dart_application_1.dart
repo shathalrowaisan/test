@@ -1,8 +1,18 @@
 
 // import 'dart:html';
+import 'dart:collection';
 import 'dart:io';
 
 void main(List<String> arguments) {
+
+    List<Book> books = [ 
+    Book(book_title: "start with why", price: 80.0 , author: "simon sink" , quantitiy: 13) ,
+    Book(book_title: "but how do it know", price: 59.9 , author: "j. clark scott" , quantitiy: 22) ,
+    Book(book_title: "clean code", price: 50.0 , author: "robert cecil martin" , quantitiy: 5) ,
+    Book(book_title: "zero to one", price: 45.0 , author: "peter thiel" , quantitiy: 12) ,
+    Book(book_title: "you don't know js", price: 39.9 , author: "kyle simpson" , quantitiy: 9) ,
+   ] ;
+   
 
   // this var is used to repeat the program in the while loop condition until the user choose to exit 
   bool repeat = true ;
@@ -15,7 +25,7 @@ void main(List<String> arguments) {
     print("4 . view ");
     print("5 . search ");
     print("6 . Exit the program ");
-    stdout.write("Please enter a number from the above options : ");
+    stdout.write("Please enter a number from the about options : ");
 
     var input = stdin.readLineSync();
 
@@ -33,7 +43,7 @@ void main(List<String> arguments) {
         break;
 
       case "4":
-
+       print(Warehouse.books.join("\n"));
         break;
       case "5":
         
@@ -54,7 +64,7 @@ void main(List<String> arguments) {
 }
 
 abstract class Library with Warehouse{
-
+  
   viewInfo(){
     
   }
@@ -72,12 +82,21 @@ mixin Warehouse {
     Book(book_title: "zero to one", price: 45.0 , author: "peter thiel" , quantitiy: 12) ,
     Book(book_title: "you don't know js", price: 39.9 , author: "kyle simpson" , quantitiy: 9) ,
    ] ;
+   
+   
+       
+   
   
   @override
   static viewInfo() {
     // khuloud
     // this method should print all the books and all there info
+   //print("the name of the book: ${book_title},the uathor:${author},the price: ${price} ");
 
+
+  
+   
+  
     
   }
 
@@ -163,7 +182,7 @@ class Book extends Library {
   double? price ;
   int? quantity = 0;
 
-  Book({ required this.book_title , String? author , required this.price , int? quantitiy }){
+  Book({ required this.book_title , String? author , required this.price , int? quantitiy, int? book_id }){
     if ( author != null ) {
       this.author = author ;
     }
@@ -174,8 +193,28 @@ class Book extends Library {
     ID_counter = ID_counter + 1 ;
     print("the Book ID is : ${this.book_id}");
   }
+  
+  
+  
 
-  viewInfo(){ 
+@override
+    viewInfo(){ 
+
+        List<Book> books = [ 
+    Book(book_title: "start with why", price: 80.0 , author: "simon sink" , quantitiy: 13) ,
+    Book(book_title: "but how do it know", price: 59.9 , author: "j. clark scott" , quantitiy: 22) ,
+    Book(book_title: "clean code", price: 50.0 , author: "robert cecil martin" , quantitiy: 5) ,
+    Book(book_title: "zero to one", price: 45.0 , author: "peter thiel" , quantitiy: 12) ,
+    Book(book_title: "you don't know js", price: 39.9 , author: "kyle simpson" , quantitiy: 9) ,
+   ] ;
+     
+     
+    print("the name of the book: ${book_title},the uathor:${author},the price: ${price} ");
+    print(book_title);
+  
+     //print(book_title);
+     //print(author);
+    // print(price);
     // khuloud
     // view all the book info exept the quantitiy
 
