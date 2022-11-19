@@ -59,7 +59,7 @@ void main(List<String> arguments) {
       default:
         print("-=" * 50);
         
-        print("you didn't enter a number please try again. ");
+        printMagenta("you didn't enter a number please try again. ");
 
         print("-=" * 50);
     }
@@ -224,18 +224,138 @@ mixin Warehouse {
 
   static deleteBook(){
     // amjad
-    // 
+    //
+    bool repeat = true; //&&&&&&&&&&&&&&&&&&&&&&
 
+    print(
+        "View existing books ENTER 1 , cancel ENTER 2"); //النص الاول من الجمله غلط
+    var input4 = stdin.readLineSync();
+
+    switch (input4) {
+      case "1":
+        //هنا بعرض كل الكتب بمعلوماتها يعني بنادي ميثود فيوانفو
+        print("Enter the book ID to delete");
+        int? n1 = int.parse(stdin.readLineSync()!);
+        //هنا فيه فكره ومشكله الفكره لو ما دخل اي دي موجود والمشكله ان لازم يطلع من اللوب
+        books.removeWhere((element) => element.book_id == n1);
+        print(books);
+
+        break;
+
+      case "2":
+        repeat = false;
+        break;
+    }
   }
 
   static searchForBook(){
     // amjad
-    // search by the title 
+    // search by the title
     // return the ID
+    bool repeat = true; //&&&&&&&&&&&&&&&&&&&&&&
 
+    do {
+      print(
+          "If you want to search for the title of the book OR author's name ENTER 1 , cancel ENTER 2 ");
+      var input5 = stdin.readLineSync();
+
+      switch (input5) {
+        case "1":
+          print("Please enter the name of book OR author's name : ");
+          var input6 = stdin.readLineSync();
+          input6 = input6!.toLowerCase().trim();
+
+          for (var find in Warehouse.books) {
+            if (input6 == find.book_title || input6 == find.author) {
+              print(find); //مومتأكده
+            } else if (input6.isEmpty) {
+              print("Please enter something to search");
+            } else {
+              print(
+                  "Sorry there is no book title OR author's name in our library. We will work to provide it as soon as possible");
+            }
+          }
+          break;
+
+        case "2":
+          repeat = false;
+          break;
+      }
+    } while (repeat);
   }
 
   static editBook(){
+
+    // amjad
+    // takes a multible parameters and check for null parameter
+    bool repeat = true;
+    Warehouse.viewInfo(quantity: true);
+
+    // print("Enter the title of the book you want to edit");
+    // var inputBE = stdin.readLineSync();
+    // inputBE = inputBE!.toLowerCase().trim(); //اسم الكتااااااااب
+    print("Enter the ID of the book you want to edit");
+    int? nID = int.parse(stdin.readLineSync()!);
+
+    //check if already exist
+
+    for (var find = 1; find < Warehouse.books.length; find++) {
+      //if (find.book_title == inputBE)
+      if (nID == find) {
+        print(
+            " if you want to change the title of the book ENTER 1,if you want to change the price of the book Enter 2,if you want to change the author Enter 3,if you want to change the quantity Enter 4, cancel ENTER 5");
+        var inputBE2 = stdin.readLineSync();
+
+        switch (inputBE2) {
+          case "1": //title
+            print("New book title :");
+            var inputBE3 = stdin.readLineSync();
+            inputBE3 = inputBE3!.toLowerCase().trim(); //الجدييييييد
+            if (inputBE3.isEmpty) {
+              print("you didn't enter the title of the book");
+            } else {
+              Warehouse.books[find-1]= inputBE3 as Book;
+              // Warehouse.books[find-1].setTitle(title: inputBE3);
+            }
+
+            break;
+
+          case "2":
+            print("new price : ");
+            var inputBE4 = double.parse(stdin.readLineSync()!);
+            Warehouse.books[find]= inputBE4 as Book;
+            
+            break;
+
+          case "3":
+            print("the name of the author : ");
+            var inputBE5 = stdin.readLineSync();
+            inputBE5 = inputBE5!.toLowerCase().trim();
+            if (inputBE5.isEmpty) {
+              print("you didn't enter the title of the book");
+            } else {
+              Warehouse.books[find]= inputBE5 as Book;
+            }
+            break;
+
+          case "4":
+            print("The new quantity");
+            var inputBE6 = double.parse(stdin.readLineSync()!);
+            //بشيك اذا دخل رقم
+            Warehouse.books[find]= inputBE6 as Book;
+            
+            break;
+
+          case "5":
+            repeat = false;
+            break;
+
+          default:
+            print("you didn't enter a number please try again. ");
+        }
+      }
+    }
+    print(Warehouse.books);
 
   }
 
@@ -286,9 +406,5 @@ class Book extends Library {
 
   }
 
-  edit(){ 
-    // amjad
-    // takes a multible parameters and check for null parameter
-  }
 
 }
